@@ -1,0 +1,24 @@
+html {
+	font-family: sans-serif;
+	color: #4a235a;
+	background-color: bd9db3;
+  }
+
+  img {
+	width: 300px;
+    float: left;
+    margin-left: 5%;
+  }
+  
+  .main_container {
+    width: 50%;
+    float: left;
+    margin-left: 20px;
+  }
+  
+
+  }
+  .lastResult {
+	color: w;
+	padding: 3px;
+  }
