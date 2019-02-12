@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <title>Homework #3 - The Psychic Game - Jennifer Wandersee</title>
+  <link rel="stylesheet" type="text/css" href="assets/css/style_2.css">
+  
+</head>
+
+
+<!-- Title of the game -->
+<body>
+
+<picture>
+    <img src= "assets/images/fortune_teller.jpg" alt="Fortune Teller">
+        
+</picture>
+
+
+<div class=main_container>
+
+   <h1>The Psychic Game</h1>
+
+   <p>We have selected a random letter of the alphabet. See if you can guess it in 12 tries or fewer.</p>
+
+   <div class="form">
+    <label for="guessField">Guess a letter: </label><input type="text" id="guessField" class="guessField">
+    <input type="submit" value="Submit guess" class="guessSubmit">
+   </div>
+
+   <div class="resultParas">
+       <p class="guesses"></p>
+       <p class="lastResult"></p>
+     </div>
+
+</div>     
+
+</body>
+
+
+<script>
+
+      let randomLetter = "b";
+      const guesses = document.querySelector('.guesses');
+      const lastResult = document.querySelector('.lastResult');
+      const guessSubmit = document.querySelector('.guessSubmit');
+      const guessField = document.querySelector('.guessField');
+      let guessCount = 1;
+      let resetButton;
+      function checkGuess() {
+        let userGuess = String(guessField.value);
+        if (guessCount === 1) {
+          guesses.textContent = 'Previous guesses: ';
+        }
+        guesses.textContent += userGuess + ' ';
+
+
+        guesses.textContent += userGuess + ' ';
+        if (userGuess === randomLetter) {
+          lastResult.textContent = 'Congratulations! You are a true psychic!!';
+          lastResult.style.backgroundColor = 'white';
+          setGameOver();
+        } else if (guessCount === 12) {
+          lastResult.textContent = 'Sorry, you ran out of guesses--game over!';
+          setGameOver();
+        } else {
+          lastResult.textContent = 'Wrong--try again!';
+          lastResult.style.backgroundColor = 'red';
+        }
+
+        guessCount++;
+
+guessField.value = '';
+
+guessField.focus();
+
+}
+
+
+
+guessSubmit.addEventListener('click', checkGuess);
+
+
+
+function setGameOver() {
+
+guessField.disabled = true;
+
+guessSubmit.disabled = true;
+
+resetButton = document.createElement('button');
+
+resetButton.textContent = 'Start new game';
+
+document.body.appendChild(resetButton);
+
+resetButton.addEventListener('click', resetGame);
+
+}
+
+
+
+function resetGame() {
+
+guessCount = 1;
+
+const resetParas = document.querySelectorAll('.resultParas p');
+
+for(let i = 0 ; i < resetParas.length ; i++) {
+
+  resetParas[i].textContent = '';
+
+}
+
+
+
+resetButton.parentNode.removeChild(resetButton);
+
+guessField.disabled = false;
+
+guessSubmit.disabled = false;
+
+guessField.value = '';
+
+guessField.focus();
+
+lastResult.style.backgroundColor = 'white';
+
+randomNumber = Math.floor(Math.random() * 100) + 1;
+
+}
+
+
+
+</script>
+
+</body>
+
+
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
